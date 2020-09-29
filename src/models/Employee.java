@@ -119,11 +119,11 @@ public class Employee {
         return updated_at;
     }
 
-    public void setUpdated(Timestamp updated_at) {
+    public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
 
-    public Integer getDelete_flag(Integer delete_flag) {
+    public Integer getDelete_flag() {
         return delete_flag;
     }
 
