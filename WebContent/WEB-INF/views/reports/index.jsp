@@ -8,7 +8,9 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>日報　一覧</h2>
+        <div id="top">
+        <h2>日報一覧</h2>
+        </div>
         <table id="report_list">
             <tbody>
                 <tr>
@@ -19,10 +21,22 @@
                 </tr>
                 <c:forEach var="report" items="${reports}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td class="report_name"><c:out value="${report.employee.name}" /></td>
+                        <td class="report_name">
+                    <%--日報一覧でログインしているユーザーが自分の名前を押したときに同僚のページに遷移するのではなく、トップページに飛ぶようにする --%>
+                        <c:choose>
+                        <c:when test="${sessionScope.login_employee.id == report.employee.id}" >
+                            <a href="<c:url value='/' />"><c:out value="${report.employee.name}" /></a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="<c:url value='/colleages/index?id=${report.employee.id}' />"><c:out value="${report.employee.name}" /></a>
+                        </c:otherwise>
+                        </c:choose>
+                        </td>
                         <td class="report_date"><fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
-                        <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
+                        <td class="report_action">
+
+                        <a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

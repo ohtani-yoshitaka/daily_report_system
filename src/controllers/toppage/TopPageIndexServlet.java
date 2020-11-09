@@ -38,6 +38,7 @@ public class TopPageIndexServlet extends HttpServlet {
 
             Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
 
+
             int page;
             try{
                 page = Integer.parseInt(request.getParameter("page"));
@@ -56,6 +57,8 @@ public class TopPageIndexServlet extends HttpServlet {
 
             em.close();
 
+            /**request.setAttribute("emp", (Employee) em.find(Employee.class, Integer.parseInt(request.getParameter("id"))));**/
+            /**request.setParameter("id",getId());**/
             request.setAttribute("reports", reports);
             request.setAttribute("reports_count", reports_count);
             request.setAttribute("page", page);

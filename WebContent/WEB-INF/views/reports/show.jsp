@@ -5,8 +5,9 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${report != null}">
-                <h2>日報　詳細ページ</h2>
-
+                <div id="top">
+                <h2>日報詳細</h2>
+                </div>
                 <table>
                     <tbody>
                         <tr>
@@ -45,8 +46,16 @@
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
-        </c:choose>
 
-        <p><a href="<c:url value="/reports/index" />">一覧に戻る</a></p>
+    </c:choose>
+        <%--<c:choose>
+        <c:when test="{back != null"><a href="<c:url value="/follows/index" />">フォロー一覧に戻る</a></c:when>
+        <c:otherwise>--%>
+
+        <%-- /c:otherwise>
+        </c:choose> --%>
+<p><a href="<c:url value="/reports/index" />">日報一覧に戻る</a></p>
+
+
     </c:param>
 </c:import>
